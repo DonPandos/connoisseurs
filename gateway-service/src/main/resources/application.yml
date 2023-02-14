@@ -1,0 +1,13 @@
+server:
+  port: 8762
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: orderService
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/test/**
