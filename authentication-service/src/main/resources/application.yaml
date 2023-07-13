@@ -6,6 +6,15 @@ logging:
     org.springframework.security: trace
 
 spring:
+  liquibase:
+    enabled: true
+    change-log: db.changelog/changelog-master.yaml
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/auth_server
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
   security:
     oauth2:
       authorizationserver:
