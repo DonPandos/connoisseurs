@@ -1,8 +1,8 @@
 package com.microservices.authenticationservice.enums;
 
 public enum UserStatusEnum {
-    ACTIVE("Активный пользователь"),
-    DELETED("Удаленный пользователь");
+    ACTIVE("Active user"),
+    DELETED("Deleted User");
 
     UserStatusEnum(String userStatus) {
     }

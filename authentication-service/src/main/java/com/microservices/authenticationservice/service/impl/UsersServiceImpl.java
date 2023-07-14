@@ -1,9 +1,9 @@
 package com.microservices.authenticationservice.service.impl;
 
-import com.microservices.authenticationservice.entity.UsersEntity;
+import com.microservices.authenticationservice.entity.UserEntity;
 
 public interface UsersServiceImpl {
-    UsersEntity findUserById(Long id);
+    UserEntity findUserById(Long id);
 
-    UsersEntity createUser(UsersEntity usersEntity);
+    UserEntity createUser(UserEntity userEntity);
 }
