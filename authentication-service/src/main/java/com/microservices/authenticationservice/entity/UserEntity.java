@@ -1,6 +1,7 @@
 package com.microservices.authenticationservice.entity;
 
 import com.microservices.authenticationservice.enums.UserStatusEnum;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -15,16 +16,18 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Table(name = "users", schema = "public")
-public class UsersEntity {
+public class UserEntity {
 
     @Id
     private Long id;
 
     private String password;
 
-    private String firstname;
+    @Column(name = "firstname")
+    private String firstName;
 
-    private String lastname;
+    @Column(name = "lastname")
+    private String lastName;
 
     private LocalDate birthday;
 
