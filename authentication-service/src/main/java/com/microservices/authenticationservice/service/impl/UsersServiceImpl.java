@@ -1,9 +1,12 @@
 package com.microservices.authenticationservice.service.impl;
 
+import com.microservices.authenticationservice.dto.UserDto;
+import com.microservices.authenticationservice.dto.UserRegistrationRequestDto;
 import com.microservices.authenticationservice.entity.UserEntity;
+import com.microservices.authenticationservice.exception.UserPasswordMissMatchException;
 
 public interface UsersServiceImpl {
-    UserEntity findUserById(Long id);
+    UserDto findUserById(Long id);
 
-    UserEntity createUser(UserEntity userEntity);
+    UserDto createUser(UserRegistrationRequestDto userRegistrationRequestDto);
 }

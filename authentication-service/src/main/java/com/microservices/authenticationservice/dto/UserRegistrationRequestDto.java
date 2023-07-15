@@ -4,18 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
 @Setter
-public class UserDto {
-
-    @NotNull
-    private Long id;
-
-    @NotEmpty
-    private String password;
+public class UserRegistrationRequestDto {
 
     @NotEmpty
     private String firstName;
@@ -24,7 +17,15 @@ public class UserDto {
     private String lastName;
 
     @NotEmpty
+    private String password;
+
+    @NotEmpty
+    private String confirmPassword;
+
+    @NotEmpty
     private String email;
 
     private LocalDate birthday;
+
+
 }

@@ -1,10 +1,7 @@
 package com.microservices.authenticationservice.entity;
 
 import com.microservices.authenticationservice.enums.UserStatusEnum;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +16,7 @@ import java.time.LocalDate;
 public class UserEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String password;
@@ -33,5 +31,5 @@ public class UserEntity {
 
     private String email;
 
-    private UserStatusEnum status;
+    private String status;
 }
