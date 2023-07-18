@@ -7,14 +7,13 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class ErrorDetails {
+public class ErrorResponse {
 
     private LocalDateTime timestamp;
     private String message;
     private String details;
 
-    public ErrorDetails(LocalDateTime timestamp, String message, String details) {
-        super();
+    public ErrorResponse(LocalDateTime timestamp, String message, String details) {
         this.timestamp = timestamp;
         this.message = message;
         this.details = details;

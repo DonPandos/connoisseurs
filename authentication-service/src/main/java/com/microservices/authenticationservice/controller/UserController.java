@@ -5,7 +5,6 @@ import com.microservices.authenticationservice.dto.UserRegistrationRequestDto;
 import com.microservices.authenticationservice.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@Validated
 public class UserController {
 
     private final UserServiceImpl userServiceImpl;

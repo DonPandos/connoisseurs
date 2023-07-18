@@ -9,7 +9,7 @@ import com.microservices.authenticationservice.exception.AlreadyExistsException;
 import com.microservices.authenticationservice.exception.ResourceNotFoundException;
 import com.microservices.authenticationservice.mapper.UserMapper;
 import com.microservices.authenticationservice.repository.UserRepository;
-import com.microservices.authenticationservice.service.UsersService;
+import com.microservices.authenticationservice.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -19,7 +19,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 @Validated
-public class UserServiceImpl implements UsersService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final SecurityConfig securityConfig;

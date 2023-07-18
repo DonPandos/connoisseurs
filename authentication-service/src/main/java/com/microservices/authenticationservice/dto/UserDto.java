@@ -1,6 +1,5 @@
 package com.microservices.authenticationservice.dto;
 
-import com.microservices.authenticationservice.utils.ValidPassword;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +14,6 @@ public class UserDto {
     @NotNull
     private Long id;
 
-    @ValidPassword
     private String password;
 
     @NotEmpty
