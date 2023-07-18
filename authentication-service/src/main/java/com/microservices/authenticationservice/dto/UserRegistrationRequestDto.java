@@ -1,5 +1,6 @@
 package com.microservices.authenticationservice.dto;
 
+import com.microservices.authenticationservice.utils.ValidPassword;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,10 +17,9 @@ public class UserRegistrationRequestDto {
     @NotEmpty
     private String lastName;
 
-    @NotEmpty
+    @ValidPassword
     private String password;
 
-    @NotEmpty
     private String confirmPassword;
 
     @NotEmpty
