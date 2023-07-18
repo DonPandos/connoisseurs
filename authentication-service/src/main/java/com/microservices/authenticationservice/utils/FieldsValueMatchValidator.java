@@ -1,14 +1,9 @@
 package com.microservices.authenticationservice.utils;
 
+import jakarta.validation.ConstraintValidator;
 import org.springframework.beans.BeanWrapperImpl;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class FieldsValueMatchValidator
-        implements ConstraintValidator<FieldsValueMatch, Object> {
+public class FieldsValueMatchValidator implements ConstraintValidator<FieldsValueMatch, Object> {
 
     private String field;
     private String fieldMatch;
@@ -18,19 +13,13 @@ public class FieldsValueMatchValidator
         this.fieldMatch = constraintAnnotation.fieldMatch();
     }
 
-    public boolean isValid(Object value,
-                           ConstraintValidatorContext context) {
+    @Override
+    public boolean isValid(Object obj, jakarta.validation.ConstraintValidatorContext constraintValidatorContext) {
+        Object fieldValue = new BeanWrapperImpl(obj).getPropertyValue(field);
+        Object fieldMatchValue = new BeanWrapperImpl(obj).getPropertyValue(fieldMatch);
 
-        Object fieldValue = new BeanWrapperImpl(value)
-                .getPropertyValue(field);
-        Object fieldMatchValue = new BeanWrapperImpl(value)
-                .getPropertyValue(fieldMatch);
-
-        if (fieldValue != null) {
-            return fieldValue.equals(fieldMatchValue);
-        } else {
-            return fieldMatchValue == null;
-        }
+        if (fieldValue != null) return fieldValue.equals(fieldMatchValue);
+        else return fieldMatchValue == null;
     }
 /*    public boolean isValid(Object value, ConstraintValidatorContext context) {
         Object fieldValue = new BeanWrapperImpl(value).getPropertyValue(field);

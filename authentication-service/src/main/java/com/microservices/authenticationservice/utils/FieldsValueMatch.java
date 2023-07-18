@@ -1,6 +1,8 @@
 package com.microservices.authenticationservice.utils;
 
-import javax.validation.Constraint;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -16,4 +18,8 @@ public @interface FieldsValueMatch {
     String field();
 
     String fieldMatch();
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }
