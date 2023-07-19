@@ -2,7 +2,6 @@ package com.microservices.authenticationservice.exception.handler;
 
 import com.microservices.authenticationservice.exception.AlreadyExistsException;
 import com.microservices.authenticationservice.exception.ResourceNotFoundException;
-import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
