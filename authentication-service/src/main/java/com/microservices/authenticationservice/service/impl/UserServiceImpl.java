@@ -6,7 +6,7 @@ import com.microservices.authenticationservice.dto.UserRegistrationRequestDto;
 import com.microservices.authenticationservice.entity.UserEntity;
 import com.microservices.authenticationservice.enums.UserStatusEnum;
 import com.microservices.authenticationservice.exception.ResourceNotFoundException;
-import com.microservices.authenticationservice.exception.UserAlreadyExistException;
+import com.microservices.authenticationservice.exception.UserAlreadyExistsException;
 import com.microservices.authenticationservice.mapper.UserMapper;
 import com.microservices.authenticationservice.repository.UserRepository;
 import com.microservices.authenticationservice.service.UserService;
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     public UserDto createUser(UserRegistrationRequestDto request) {
         userRepository.findByEmail(request.getEmail())
                 .ifPresent(user -> {
-                    throw new UserAlreadyExistException("Email already in use");
+                    throw new UserAlreadyExistsException("Email already in use");
                 });
 
         UserEntity user = new UserEntity();

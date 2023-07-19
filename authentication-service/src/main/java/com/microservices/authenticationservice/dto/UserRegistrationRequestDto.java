@@ -12,8 +12,7 @@ import java.time.LocalDate;
 @Setter
 @FieldsValueMatch(
         field = "password",
-        fieldMatch = "confirmPassword",
-        message = "Passwords do not match!")
+        fieldMatch = "confirmPassword")
 public class UserRegistrationRequestDto {
 
     @NotEmpty

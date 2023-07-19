@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FieldPasswordRegex {
-    String message() default "Invalid input for the password field";
+    String message() default "Invalid input of the field";
 
     String field();
 
