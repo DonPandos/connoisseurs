@@ -14,10 +14,6 @@ import java.time.LocalDate;
         field = "password",
         fieldMatch = "confirmPassword",
         message = "Passwords do not match!")
-@FieldPasswordRegex(
-        field = "password",
-        message = "The password field must contain at least 8 Latin characters, 1 lowercase, and 1 uppercase letter."
-)
 public class UserRegistrationRequestDto {
 
     @NotEmpty
@@ -26,6 +22,7 @@ public class UserRegistrationRequestDto {
     @NotEmpty
     private String lastName;
 
+    @FieldPasswordRegex(field = "password")
     private String password;
 
     private String confirmPassword;
@@ -34,6 +31,4 @@ public class UserRegistrationRequestDto {
     private String email;
 
     private LocalDate birthday;
-
-
 }

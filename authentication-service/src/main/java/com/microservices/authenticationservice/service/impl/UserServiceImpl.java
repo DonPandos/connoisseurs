@@ -5,8 +5,8 @@ import com.microservices.authenticationservice.dto.UserDto;
 import com.microservices.authenticationservice.dto.UserRegistrationRequestDto;
 import com.microservices.authenticationservice.entity.UserEntity;
 import com.microservices.authenticationservice.enums.UserStatusEnum;
-import com.microservices.authenticationservice.exception.AlreadyExistsException;
 import com.microservices.authenticationservice.exception.ResourceNotFoundException;
+import com.microservices.authenticationservice.exception.UserAlreadyExistException;
 import com.microservices.authenticationservice.mapper.UserMapper;
 import com.microservices.authenticationservice.repository.UserRepository;
 import com.microservices.authenticationservice.service.UserService;
@@ -28,18 +28,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findUserById(Long id) {
-        return userRepository.findById(id)
-                .map(userMapper::userEntityToUserDto)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+        Optional<UserEntity> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            return userMapper.userEntityToUserDto(user.get());
+        } else {
+            throw new ResourceNotFoundException("User not found with ID: " + id);
+        }
     }
 
     @Override
     public UserDto createUser(UserRegistrationRequestDto request) {
-
-        Optional<UserEntity> userEmail = userRepository.findByEmail(request.getEmail());
-        if (userEmail.isPresent()) {
-            throw new AlreadyExistsException("Email already in use");
-        }
+        userRepository.findByEmail(request.getEmail())
+                .ifPresent(user -> {
+                    throw new UserAlreadyExistException("Email already in use");
+                });
 
         UserEntity user = new UserEntity();
         user.setFirstName(request.getFirstName());

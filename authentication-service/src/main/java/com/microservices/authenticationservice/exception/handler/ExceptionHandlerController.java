@@ -1,7 +1,7 @@
 package com.microservices.authenticationservice.exception.handler;
 
-import com.microservices.authenticationservice.exception.AlreadyExistsException;
 import com.microservices.authenticationservice.exception.ResourceNotFoundException;
+import com.microservices.authenticationservice.exception.UserAlreadyExistException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -20,8 +20,8 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(AlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleUserEmailException(AlreadyExistsException ex, WebRequest request) {
+    @ExceptionHandler(UserAlreadyExistException.class)
+    public ResponseEntity<ErrorResponse> handleUserEmailException(UserAlreadyExistException ex, WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
@@ -29,6 +29,10 @@ public class ExceptionHandlerController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+        ex.getBindingResult().getFieldErrors().forEach(fieldError -> {
+            errorResponse.addValidationException(fieldError.getField(), fieldError.getDefaultMessage());
+        });
+
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 

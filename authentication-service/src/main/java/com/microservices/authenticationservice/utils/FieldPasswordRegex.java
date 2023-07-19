@@ -9,7 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Constraint(validatedBy = FieldPasswordRegexValidator.class)
-@Target({ ElementType.TYPE })
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FieldPasswordRegex {
     String message() default "Invalid input for the password field";
