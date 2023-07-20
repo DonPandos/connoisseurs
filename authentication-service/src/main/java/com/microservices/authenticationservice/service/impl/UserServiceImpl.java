@@ -14,8 +14,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.Optional;
-
 @Service
 @AllArgsConstructor
 @Validated
@@ -28,18 +26,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findUserById(Long id) {
-        Optional<UserEntity> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            return userMapper.userEntityToUserDto(user.get());
-        } else {
-            throw new ResourceNotFoundException("User not found with ID: " + id);
-        }
+        UserEntity user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+        return userMapper.userEntityToUserDto(user);
     }
 
     @Override
     public UserDto createUser(UserRegistrationRequestDto request) {
-        userRepository.findByEmail(request.getEmail())
-                .ifPresent(user -> {
+        userRepository.findByEmail(request.getEmail()).ifPresent(user -> {
                     throw new UserAlreadyExistsException("Email already in use");
                 });
 
