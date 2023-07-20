@@ -14,8 +14,6 @@ import java.lang.annotation.Target;
 public @interface FieldPasswordRegex {
     String message() default "invalid input of the field";
 
-    String field();
-
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};

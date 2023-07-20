@@ -21,7 +21,7 @@ public class UserRegistrationRequestDto {
     @NotEmpty
     private String lastName;
 
-    @FieldPasswordRegex(field = "password")
+    @FieldPasswordRegex
     private String password;
 
     private String confirmPassword;

@@ -11,12 +11,6 @@ import java.util.regex.Pattern;
 public class FieldPasswordRegexValidator implements ConstraintValidator<FieldPasswordRegex, String> {
 
     private final String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
-    private String field;
-
-    public void initialize(FieldPasswordRegex constraintAnnotation) {
-        this.field = constraintAnnotation.field();
-    }
-
     @Override
     public boolean isValid(String fieldValue, jakarta.validation.ConstraintValidatorContext constraintValidatorContext) {
         if (fieldValue != null) {
