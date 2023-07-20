@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FieldsValueMatch {
 
-    String message() default "Doesn't match!";
+    String message() default "doesn't match!";
 
     String field();
 

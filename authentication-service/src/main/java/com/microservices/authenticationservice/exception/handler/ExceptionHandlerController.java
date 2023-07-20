@@ -29,10 +29,6 @@ public class ExceptionHandlerController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
-        ex.getBindingResult().getGlobalErrors().forEach(globalError -> {
-            ex.getBindingResult().getFieldErrors().forEach(fieldError -> errorResponse
-                    .addValidationException(fieldError.getField(), globalError.getDefaultMessage()));
-        });
         ex.getBindingResult().getFieldErrors().forEach(fieldError -> {
             errorResponse.addValidationException(fieldError.getField(), fieldError.getDefaultMessage());
         });
