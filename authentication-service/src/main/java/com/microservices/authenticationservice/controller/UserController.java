@@ -1,6 +1,7 @@
 package com.microservices.authenticationservice.controller;
 
 import com.microservices.authenticationservice.dto.UserDto;
+import com.microservices.authenticationservice.dto.UserLoginRequestDto;
 import com.microservices.authenticationservice.dto.UserRegistrationRequestDto;
 import com.microservices.authenticationservice.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,10 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<UserDto> signUp(@Valid @RequestBody UserRegistrationRequestDto requestDto) {
         return ResponseEntity.ok(userServiceImpl.createUser(requestDto));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> login(@Valid @RequestBody UserLoginRequestDto requestDto) {
+        return ResponseEntity.ok(userServiceImpl.login(requestDto));
     }
 }
