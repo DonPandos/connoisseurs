@@ -1,5 +1,6 @@
 package com.microservices.authenticationservice.exception.handler;
 
+import com.microservices.authenticationservice.exception.FieldDoNotMatch;
 import com.microservices.authenticationservice.exception.ResourceNotFoundException;
 import com.microservices.authenticationservice.exception.UserAlreadyExistsException;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,12 @@ public class ExceptionHandlerController {
         });
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FieldDoNotMatch.class)
+    public ResponseEntity<ErrorResponse> handleFieldDontMatch(FieldDoNotMatch ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
     }
 
 }
